@@ -9,39 +9,25 @@ const middlewares = [
 
 export async function middlewarePipeline(request: NextRequest): Promise<NextResponse> {
   let currentRequest = request;
-  let authResponse: NextResponse | null = null;
+  let finalResponse: NextResponse | null = null;
 
   for (const middleware of middlewares) {
     try {
       const result = middleware(currentRequest);
 
       if (result instanceof NextResponse) {
-        if (middleware === authMiddleware) {
-          // Lưu lại kết quả của authMiddleware
-          authResponse = result;
-          // Không return ngay, tiếp tục với intlMiddleware
-          currentRequest = new NextRequest(authResponse.url || currentRequest.url, {
-            headers: authResponse.headers
+        if (finalResponse) {
+          // Merge cookies từ response hiện tại vào finalResponse
+          result.cookies.getAll().forEach(cookie => {
+            (finalResponse as NextResponse).cookies.set(cookie.name, cookie.value);
           });
+        } else {
+          finalResponse = result;
         }
-        else {
-          // Đây là kết quả của intlMiddleware
-          let finalResponse = result;
-          // Nếu authMiddleware đã tạo ra một redirect, áp dụng nó vào kết quả của intlMiddleware
-          if (authResponse && authResponse.headers.get('Location')) {
-            finalResponse = NextResponse.redirect(authResponse.headers.get('Location')!);
-          }
-          // Sao chép cookies từ authResponse (nếu có) và intlMiddleware response
-          [authResponse, finalResponse].forEach(response => {
-            if (response) {
-              response.cookies.getAll().forEach(cookie => {
-                finalResponse.cookies.set(cookie.name, cookie.value);
-              });
-            }
-          });
-
-          return finalResponse;
-        }
+        // Cập nhật currentRequest cho middleware tiếp theo
+        currentRequest = new NextRequest(result.url || currentRequest.url, {
+          headers: result.headers
+        });
       }
     } catch (error) {
       console.error(`Error in ${middleware.name}:`, error);
@@ -49,7 +35,7 @@ export async function middlewarePipeline(request: NextRequest): Promise<NextResp
     }
   }
   // Nếu không có response nào được trả về, sử dụng authResponse hoặc NextResponse.next()
-  return authResponse || NextResponse.next();
+  return finalResponse || NextResponse.next();
 }
 
 function handleMiddlewareError(error: unknown, request: NextRequest): NextResponse {

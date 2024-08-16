@@ -1,0 +1,20 @@
+{
+  "AccountPage": {
+    "title": "Tài khoản",
+    "description": "Đây là trang quản lý Accounts",
+    "addAccount": "Tạo tài khoản",
+    "column": {
+      "email": "Email",
+      "name": "Tên",
+      "avatar": "Ảnh đại diện"
+    }
+  },
+  "DashboardPage": {
+    "title": "Trang Quản lý",
+    "description": "Đây là trang quản lý"
+  },
+  "Language": {
+    "locale": "{locale, select, en {🇺🇸 Tiếng Anh} vi {🇻🇳 Tiếng Việt} other {Không biêt}}",
+    "language": "Ngôn ngữ"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "AccountPage": {
+    "title": "Account",
+    "description": "This is the account page",
+    "addAccount": "Add Account",
+    "column": {
+      "email": "Email",
+      "name": "Name",
+      "avatar": "Avatar"
+    }
+  },
+  "DashboardPage": {
+    "title": "Dashboard",
+    "description": "This is the dashboard page"
+  },
+  "Language": {
+    "locale": "{locale, select, en {🇺🇸 English} vi {🇻🇳 Vietnamese} other {unknow}}",
+    "language": "Language"
+  }
+}

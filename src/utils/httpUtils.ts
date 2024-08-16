@@ -1,9 +1,9 @@
 import envConfig from '@/configs/config-env';
-import { redirect } from 'next/navigation';
 import { normalizePath } from './common';
 import { LoginResType } from '@/schema/auth';
 import { authApiRequest } from '@/configs/apiUrl/authApi';
 import { NextResponse } from 'next/server';
+import { redirect } from '@/navigation'
 
 export type CustomOptions = Omit<RequestInit, 'method'> & {
   baseUrl?: string | undefined

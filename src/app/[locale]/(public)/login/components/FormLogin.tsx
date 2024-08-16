@@ -19,7 +19,7 @@ import { getAccessToken, handleErrorApi } from '@/utils/common';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useRef } from 'react';
 import { useBoundStore } from '@/core/zustand';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/navigation'
 
 const FormLogin = () => {
   const router = useRouter()

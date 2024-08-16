@@ -1,9 +1,9 @@
 'use client'
 
 import { authApiRequest } from '@/configs/apiUrl/authApi'
+import { useRouter } from '@/navigation'
 import { getRefreshToken, setAccessToken, setRefreshToken } from '@/utils/common'
 import { useSearchParams } from 'next/navigation'
-import { useRouter } from 'next/navigation'
 import React, { useEffect, useRef } from 'react'
 
 const RefreshTokenPage = () => {

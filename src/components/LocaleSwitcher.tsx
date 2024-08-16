@@ -14,7 +14,7 @@ import {
 import { Locale } from '@/lib/locale'
 import { useLocale, useTranslations } from 'next-intl'
 import { locales } from '@/i18n'
-import { usePathname, useRouter } from '../../navigation'
+import { usePathname, useRouter } from '../navigation'
 
 const LocaleSwitcher = () => {
   const locale = useLocale()

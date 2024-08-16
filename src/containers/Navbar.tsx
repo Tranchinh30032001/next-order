@@ -3,9 +3,8 @@
 import React, { useEffect } from 'react'
 import { useBoundStore } from '@/core/zustand'
 import { cn } from '@/lib/utils'
-import { usePathname } from 'next/navigation'
 import { getAccessToken } from '@/utils/common'
-import { Link } from '../../navigation'
+import { Link, usePathname } from '../navigation'
 
 const navItems = [
   {

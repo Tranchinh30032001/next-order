@@ -4,7 +4,7 @@ import { useLogoutMutation } from '@/services/auth';
 import { handleErrorApi } from '@/utils/common';
 import { DropdownMenuGroup, DropdownMenuItem } from '@radix-ui/react-dropdown-menu';
 import React from 'react';
-import { useRouter } from '../../navigation'
+import { useRouter } from '../navigation'
 
 const ButtonLogout = () => {
   const router = useRouter()
